@@ -41,6 +41,9 @@ export async function GET(request: NextRequest) {
     const quoteData = await rateLimitedRequest(async () => {
       try {
         const yahooFinance = (await import('yahoo-finance2')).default;
+        if (typeof (yahooFinance as any).suppressNotices === 'function') {
+          (yahooFinance as any).suppressNotices(['yahooSurvey']);
+        }
         const quote = await yahooFinance.quote(yahooSymbol);
         return quote;
       } catch (error) {
