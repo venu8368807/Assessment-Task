@@ -5,8 +5,9 @@ import { normalizeSymbol } from '@/app/lib/symbols';
 import { rateLimitedRequest, respectfulDelay } from '@/app/lib/limits';
 
 export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  
   try {
-    const { searchParams } = new URL(request.url);
     const symbol = searchParams.get('symbol');
     const exchange = searchParams.get('exchange') as 'NSE' | 'BSE';
 
