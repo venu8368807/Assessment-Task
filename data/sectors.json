@@ -1,0 +1,39 @@
+{
+  "sectors": [
+    {
+      "name": "Technology",
+      "color": "#3B82F6",
+      "order": 1
+    },
+    {
+      "name": "Financials",
+      "color": "#10B981",
+      "order": 2
+    },
+    {
+      "name": "Energy",
+      "color": "#F59E0B",
+      "order": 3
+    },
+    {
+      "name": "Healthcare",
+      "color": "#EF4444",
+      "order": 4
+    },
+    {
+      "name": "Consumer Goods",
+      "color": "#8B5CF6",
+      "order": 5
+    },
+    {
+      "name": "Telecommunications",
+      "color": "#06B6D4",
+      "order": 6
+    },
+    {
+      "name": "Automotive",
+      "color": "#84CC16",
+      "order": 7
+    }
+  ]
+}
