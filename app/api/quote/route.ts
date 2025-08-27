@@ -5,10 +5,12 @@ import { toYahooSymbol, normalizeSymbol } from '@/app/lib/symbols';
 import { rateLimitedRequest, respectfulDelay } from '@/app/lib/limits';
 
 export async function GET(request: NextRequest) {
+  let symbol: string | null = null;
+  let exchange: 'NSE' | 'BSE' | null = null;
   try {
     const { searchParams } = new URL(request.url);
-    const symbol = searchParams.get('symbol');
-    const exchange = searchParams.get('exchange') as 'NSE' | 'BSE';
+    symbol = searchParams.get('symbol');
+    exchange = searchParams.get('exchange') as 'NSE' | 'BSE' | null;
 
     if (!symbol || !exchange) {
       return NextResponse.json(
@@ -75,8 +77,8 @@ export async function GET(request: NextRequest) {
       { 
         error: 'Failed to fetch quote data',
         details: error instanceof Error ? error.message : 'Unknown error',
-        symbol: searchParams.get('symbol'),
-        exchange: searchParams.get('exchange'),
+        symbol,
+        exchange,
       },
       { status: 500 }
     );
