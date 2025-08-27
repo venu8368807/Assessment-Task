@@ -46,12 +46,12 @@ export class TTLCache<T> {
   cleanup(): number {
     let removed = 0;
     const now = Date.now();
-    for (const [key, entry] of this.cache.entries()) {
+    this.cache.forEach((entry, key) => {
       if (now > entry.expiry) {
         this.cache.delete(key);
         removed++;
       }
-    }
+    });
     return removed;
   }
 }
