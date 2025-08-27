@@ -156,10 +156,13 @@ export default function Charts({ sectors, totalInvestment }: ChartsProps) {
               />
               <Tooltip content={<CustomTooltip />} />
               <Bar 
-                dataKey="gainLoss" 
-                fill={(entry: any) => entry.gainLoss >= 0 ? '#10B981' : '#EF4444'}
+                dataKey="gainLoss"
                 radius={[4, 4, 0, 0]}
-              />
+              >
+                {performanceData.map((entry, index) => (
+                  <Cell key={`bar-cell-${index}`} fill={entry.gainLoss >= 0 ? '#10B981' : '#EF4444'} />
+                ))}
+              </Bar>
             </BarChart>
           </ResponsiveContainer>
         )}
